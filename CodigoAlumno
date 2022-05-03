@@ -1,0 +1,70 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace CapaPresentacion.Clases
+{
+    /// <summary>
+    /// Lógica de interacción para frmAlumno.xaml
+    /// </summary>
+    public partial class frmAlumno : Window
+    {
+        public frmAlumno()
+        {
+            InitializeComponent();
+        }
+        ClaseNegocio.Alumno alumno = new ClaseNegocio.Alumno();
+        private void btnEscribir_Click(object sender, RoutedEventArgs e)
+        {
+            alumno.Codigo = txtCodigo.Text.Trim();
+            alumno.Apellidos = txtApellidos.Text.Trim();
+            alumno.Nombres = txtNombres.Text.Trim();
+            alumno.Correo = txtCorreo.Text.Trim();
+            alumno.Domicilio = txtDomicilio.Text.Trim();
+            DateTime? fecha = dtpFecNacimiento.SelectedDate;
+            alumno.FechaNac = fecha.Value;
+            alumno.LugarNac = txtLugNacimiento.Text.Trim();
+            alumno.Escuela = txtEscuela.Text.Trim();
+            alumno.Seguro = txtSeguro.Text.Trim();
+
+            MessageBox.Show("Los datos del alumno fueron agregados correctamente");
+        }
+        private void btnLeer_Click_1(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Codigo: " + alumno.Codigo + "\nApellidos: " + alumno.Apellidos +
+                "\nNombres: " + alumno.Nombres + "\nCorreo: " + alumno.Correo + "\nDomicilio: " +
+                alumno.Domicilio + "\nFechaNacimiento: " + alumno.FechaNac + "\nLugarNacimiento: " +
+                alumno.LugarNac + "\nEscuela: " + alumno.Escuela + "\nSeguro: " + alumno.Seguro.ToString());
+        }
+
+        private void btnMetodo1_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(alumno.Asistir());
+        }
+
+        private void btnMetodo2_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(alumno.Existir());
+        }
+
+        private void btnMetodo3_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(alumno.Estudiar());
+        }
+
+        private void btnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+    }
+}
